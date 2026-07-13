@@ -21,4 +21,6 @@ db.sqlite3
 # Archivos del sistema y de VS Code
 .vscode/
 .DS_Store
-Thumbs.db
+Thumbs.dbgit 
+
+# Otros
