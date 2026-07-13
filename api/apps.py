@@ -1,3 +1,5 @@
+    
+
 import os
 from django.apps import AppConfig
 from django.conf import settings
@@ -6,7 +8,6 @@ from transformers import pipeline
 class ApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'api'
-    
     #Variables globales de la app que sostendrán el modelo en memoria
     print("Declarando hiperparametros...")
     classifier = None
@@ -14,26 +15,24 @@ class ApiConfig(AppConfig):
     piso_seguro = 0.50
 
     def ready(self):
-        """
-        Este método se ejecuta AUTOMÁTICAMENTE una sola vez cuando Django arranca.
-        Aquí cargamos el modelo desde los archivos locales.
-        """
-        # Evitamos ejecuciones dobles que Django hace por el auto-reload en desarrollo
-        print("Accediendo al modelo...")
-        if os.environ.get('RUN_MAIN') == 'true' or not settings.DEBUG:
+        if os.environ.get('RUN_MAIN') == 'true' or os.environ.get('SERVER_SOFTWARE', '').startswith('gunicorn'):
             ruta_modelo = os.path.join(settings.BASE_DIR, 'model_weights')
-            print("🧠 MACROX AI: Cargando clasificador Zero-Shot en memoria RAM...")
-            print(f"📂 Ruta origen: {ruta_modelo}")
             
+            if os.path.exists(ruta_modelo) and os.path.exists(os.path.join(ruta_modelo, 'config.json')):
+                print("🟢 MACROX AI: Cargando modelo DeBERTa-v3 local...")
+                model_path = ruta_modelo
+                tokenizer_path = ruta_modelo
+            else:
+                print("☁️ MACROX AI: Carpeta vacía. Descargando DeBERTa-v3 desde Hugging Face...")
+                model_path = "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli"
+                tokenizer_path = "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli"
+
             try:
-                # Cargamos el pipeline usando los pesos locales descargados de Colab
                 ApiConfig.classifier = pipeline(
                     task="zero-shot-classification",
-                    model=ruta_modelo,
-                    tokenizer=ruta_modelo
+                    model=model_path,
+                    tokenizer=tokenizer_path
                 )
-                print("🟢 MACROX AI: ¡Modelo cargado exitosamente y listo para validar!")
-            
+                print("🚀 MACROX AI: ¡DeBERTa-v3 cargado exitosamente en RAM!")
             except Exception as e:
-                print("🔴 MACROX AI: Error crítico al cargar los pesos del modelo local.")
-                print(f"❌ Detalle: {str(e)}")
+                print(f"❌ MACROX AI: Error al cargar el modelo: {str(e)}")
