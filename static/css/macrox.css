@@ -1,0 +1,95 @@
+/* ==========================================
+   PALETA DARK PREMIUM — MACROX AI
+   ========================================== */
+
+:root {
+    --bg-dark-main: #0d1117;       /* Fondo profundo estilo GitHub Dark / MacOS Space Gray */
+    --bg-dark-card: #161b22;       /* Gris sutil para elevar las tarjetas del fondo */
+    --bg-dark-input: #21262d;      /* Fondo de la caja de texto */
+    --text-muted: #8b949e;         /* Gris claro para títulos secundarios y placeholders */
+    --cyan-macrox: #58a6ff;        /* Azul/Cian eléctrico de Macrox para acciones principales */
+    --cyan-macrox-hover: #1f6feb;  /* Tono más oscuro para el efecto de clic/hover */
+}
+
+/* Fondo de la aplicación */
+body.bg-macrox-dark {
+    background-color: var(--bg-dark-main) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Estilo del título secundario */
+.text-macrox-muted {
+    color: var(--text-muted) !important;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* Efecto flotante en el logo */
+.logo-macrox {
+    filter: drop-shadow(0px 4px 10px rgba(88, 166, 255, 0.15));
+    transition: transform 0.3s ease;
+}
+.logo-macrox:hover {
+    transform: scale(1.02);
+}
+
+/* Tarjeta contenedora */
+.bg-macrox-card {
+    background-color: var(--bg-dark-card) !important;
+    border: 1px solid rgba(240, 246, 252, 0.05) !important; /* Borde ultra fino imperceptible */
+}
+
+/* Cuadro de texto (Textarea) */
+.bg-macrox-input {
+    background-color: var(--bg-dark-input) !important;
+    border: 1px solid rgba(240, 246, 252, 0.1) !important;
+    transition: all 0.25s ease-in-out;
+    resize: none; /* Evita que el usuario deforme la caja en la interfaz */
+}
+
+/* Efecto cuando el usuario hace clic para escribir en la caja */
+.bg-macrox-input:focus {
+    background-color: var(--bg-dark-input) !important;
+    color: #ffffff !important;
+    border-color: var(--cyan-macrox) !important;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15) !important;
+    outline: none;
+}
+
+/* Ajuste del placeholder (texto de fondo de la caja) */
+.custom-textarea::placeholder {
+    color: #484f58 !important;
+    font-size: 0.95rem;
+}
+
+/* Botón circular de enviar (Google Icons) */
+.btn-macrox-action {
+    background-color: var(--cyan-macrox) !important;
+    color: #0d1117 !important; /* Icono oscuro sobre fondo brillante */
+    width: 42px;
+    height: 42px;
+    border: none;
+    box-shadow: 0px 4px 12px rgba(88, 166, 255, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Comportamiento del botón al pasar el mouse */
+.btn-macrox-action:hover {
+    background-color: var(--cyan-macrox-hover) !important;
+    color: #ffffff !important; /* El icono cambia a blanco en el hover */
+    transform: translateY(-1px);
+    box-shadow: 0px 6px 16px rgba(31, 111, 235, 0.5);
+}
+
+.btn-macrox-action:active {
+    transform: translateY(1px);
+}
+/* Animación de rotación para el estado de carga */
+.spin-animation {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

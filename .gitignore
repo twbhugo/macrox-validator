@@ -1,0 +1,24 @@
+# Entorno virtual
+venv/
+.venv/
+env/
+
+# Pesos pesados del modelo de IA (¡Muy importante!)
+model_weights/
+*.safetensors
+*.bin
+
+# Archivos temporales y caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Base de datos local de desarrollo
+db.sqlite3
+
+# Archivos del sistema y de VS Code
+.vscode/
+.DS_Store
+Thumbs.db
