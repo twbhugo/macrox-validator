@@ -15,6 +15,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'clavexdefecto')
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
+    'macrox-validator.twbapps.com',
     'localhost',
     '127.0.0.1',
     '.up.railway.app',  # <-- Permite cualquier app o URL generada por Railway
