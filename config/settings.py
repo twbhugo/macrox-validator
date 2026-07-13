@@ -19,9 +19,12 @@ ALLOWED_HOSTS = [
     '.up.railway.app',  # <-- Permite cualquier app o URL generada por Railway
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://macrox-validator.twbapps.com',
+    'https://*.up.railway.app'  # Por si acaso haces pruebas con la URL nativa de Railway
+]
 
 # Application definition
-
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'django.contrib.admin',
