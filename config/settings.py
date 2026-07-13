@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -8,19 +9,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%f2iq)m&9k-r6umpx=93rq38g$1z)et91v(124rf&s=4=!5rsu'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'clavexdefecto')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.up.railway.app',  # <-- Permite cualquier app o URL generada por Railway
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
